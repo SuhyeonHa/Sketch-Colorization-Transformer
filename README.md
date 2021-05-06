@@ -1,88 +1,41 @@
-# Anime-Sketch-Colorizer
+# Sketch-Colorization-Transformer
+Reference-based Sketch Colorization via Palette Transformer
 
-Automatic Sketch Colorization with reference image
+## Example Results
+### Colorized Results
+<img src="imgs/temp_results.png" height="500"></img>
 
-Prerequisites
-------
+From top to bottom, input sketch images, generated colorization images, GT images, GT palettes and generated palettes.
 
-  `pytorch`
-  
-  `torchvision`
-  
-  `numpy`
-  
-  `openCV2`
-  
-  `matplotlib`
-    
-Dataset
-------
+## Usage
+### Prerequisites
+- Python 3.6
+- Pytorch 1.8.0
+- TorchVision 0.6.1
+- scikit-image
+- scikit-learn
+- scipy
+- numpy
 
-  Taebum Kim, "Anime Sketch Colorization Pair", https://www.kaggle.com/ktaebum/anime-sketch-colorization-pair
-    
-Train
-------
+### Getting Started
+#### Installation
+Clone this repo:
+```bash
+git clone https://github.com/SuhyeonHa/Sketch-Colorization-Transformer
+cd Sketch-Colorization-Transformer
+```
+#### Dataset
+- [Anime Sketch Colorization Pair](https://www.kaggle.com/ktaebum/anime-sketch-colorization-pair)
+- Put palette data file [palette_db_8](https://drive.google.com/file/d/1Y5A6L72Xv62bLoP_G1tqZ87JkMYrJ25o/view?usp=sharing) in sketch-pair/palette/8. 8 means the number of cluster.
 
-  Please refer `train.ipynb`
-  
-Test
-------
+#### Model Training
+```bash
+train.py --train_dir D:\Dataset\sketch-pair --test_sketch_dir D:\Dataset\sketch-pair/val --test_ref_dir D:\Dataset\sketch-pair/val
+```
+I implemented visdom to check out testing images while training and I recommend you to use it.
+Howerver, if you don't want to, comment `# Visdom for test visualization` and `# Visualization for test images` parts.
 
-  Please refer `test.ipynb`
-  
-* You can download pretrained checkpoint on https://drive.google.com/open?id=1pIZCjubtyOUr7AXtGQMvzcbKczJ9CtQG (449MB)
-  
-Training details
-------
-
-| <center>Parameter</center> | <center>Value</center> |
-|:--------|:--------:|
-| Learning rate | 2e-4 | 
-| Batch size | 2 | 
-| Epoch | 25 | 
-| Optimizer | Adam |
-| (beta1, beta2) | (0.5, 0.999) |
-| (lambda1, lambda2, lambda3) | (100, 1e-4, 1e-2) |
-| Data Augmentation | RandomResizedCrop(256)<br>RandomHorizontalFlip() |
-| HW | CPU : Intel i5-8400<br>RAM : 16G<br>GPU : NVIDIA GTX1060 6G |
-| Training Time | About 0.93s per iteration<br>(About 45 hours for 25 epoch) |
-
-Model
-------
-
-![ex_screenshot](./Model.png)
- 
- For more details, please refer `Model_details.pdf`
- 
-Results
------
-
-<center>Reference / Sketch / Colorization Result / Ground Truth</center>  
-
-![ex_screenshot](./outputs/sample/img-2.jpg)
-![ex_screenshot](./outputs/sample/img-43.jpg)
-![ex_screenshot](./outputs/sample/img-79.jpg)
-![ex_screenshot](./outputs/sample/img-219.jpg)
-![ex_screenshot](./outputs/sample/img-2417.jpg)
-![ex_screenshot](./outputs/sample/img-2584.jpg)
-![ex_screenshot](./outputs/sample/img-2796.jpg)
-![ex_screenshot](./outputs/sample/img-3050.jpg)
-![ex_screenshot](./outputs/sample/img-4202.jpg)
-![ex_screenshot](./outputs/sample/img-4515.jpg)
-![ex_screenshot](./outputs/sample/img-7038.jpg)
-![ex_screenshot](./outputs/sample/img-7159.jpg)
- 
-Reference
-------
-
- [1] Taebum Kim, "Anime Sketch Colorization Pair", https://www.kaggle.com/ktaebum/anime-sketch-colorization-pair, 2019., 2020.1.13.
- 
- [2] Jim Bohnslav,"opencv_transforms", https://github.com/jbohnslav/opencv_transforms, 2020.1.13.
- 
- [3] Takeru Miyato et al., "Spectral Normalization for Generative Adversarial Networks", ICLR 2018, 2018.2.18.
- 
- [4] Ozan Oktay et al., "Attention U-Net: Learning Where to Look for the Pancreas", MIDL 2018, 2018.5.20.
- 
- [5] Siyuan Qiao et al., "Weight Standardization", https://arxiv.org/abs/1903.10520, 2019. 3. 25., 2020.1.19.
- 
- [6] Tero Karras, Samuli Laine, Timo Aila, "A Style-Based Generator Architecture for Generative Adversarial Networks", https://arxiv.org/abs/1812.04948, 2019.3.29., 2020.1.22.
+## Acknowledgements
+Our implementation is based on
+- [Reference-Based-Sketch-Image-Colorization](https://github.com/UdonDa/Reference-Based-Sketch-Image-Colorization)
+- [Anime-Sketch-Colorizer](https://github.com/delta6189/Anime-Sketch-Colorizer)
