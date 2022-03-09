@@ -1,6 +1,6 @@
 # Sketch-Colorization-Transformer
 Reference-based Sketch Colorization via Palette Transformer
-<img src="imgs/network.png" height="300"></img>
+<img src="imgs/network.jpg" height="300"></img>
 
 ## Example Results
 ### Colorized Results
